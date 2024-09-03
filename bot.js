@@ -1,4 +1,5 @@
-const { Client, GatewayIntentBits, Events } = require('discord.js');
+const Discord = require('discord.js');
+const client = new Discord.Client()
 require('dotenv').config();
 
 // Your bot token
@@ -101,13 +102,12 @@ const eng2thai = {
     ' ': ' ',
 };
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
 
-client.once(Events.ClientReady, () => {
+client.on("ready", () => {
     console.log(`${client.user.tag} has connected to Discord!`);
 });
 
-client.on(Events.MessageCreate, message => {
+client.on("message", message => {
     if (message.content.startsWith('!ome')) {
         const combinedMessage = message.content.slice(4).trim();
         try {
