@@ -110,10 +110,12 @@ client.on("ready", () => {
 client.on("message", message => {
     if (message.content.startsWith('!ome')) {
         const combinedMessage = message.content.slice(4).trim();
+
+        console.log(`${message} ${combinedMessage}`);
         try {
             const correctedText = [...combinedMessage].map(engChar => eng2thai[engChar] || engChar).join('');
             if (correctedText) {
-                message.channel.send(`จริง ๆ ตั้งใจจะพิมพ์ว่า "${correctedText}"`);
+                message.reply(`จริง ๆ ตั้งใจจะพิมพ์ว่า "${correctedText}"`);
             }
         } catch (error) {
             console.error('Error processing message:', error);
